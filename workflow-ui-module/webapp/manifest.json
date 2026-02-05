@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/",
+                "uri": "",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
