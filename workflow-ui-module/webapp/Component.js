@@ -15,22 +15,13 @@ sap.ui.define(
           manifest: "json",
         },
 
-        /**
-         * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-         * @public
-         * @override
-         */
         init: function () {
-          // call the base component's init function
           UIComponent.prototype.init.apply(this, arguments);
 
-          // set the device model
           this.setModel(models.createDeviceModel(), "device");
 
-          // Check if running in workflow context
           var componentData = this.getComponentData();
           if (componentData && componentData.startupParameters) {
-            // Running in My Inbox context
             this.setTaskModels();
 
             this.getInboxAPI().addAction(
@@ -57,7 +48,6 @@ sap.ui.define(
               this
             );
           } else {
-            // Running standalone for testing - create mock context model
             var mockContextModel = new JSONModel({
               businesspartner: "",
               businesspartnercategory: "",
@@ -116,15 +106,50 @@ sap.ui.define(
         },
 
         setTaskModels: function () {
-          // set the task model
           var startupParameters = this.getComponentData().startupParameters;
           this.setModel(startupParameters.taskModel, "task");
 
-          // set the task context model
           var taskContextModel = new JSONModel(
             this._getTaskInstancesBaseURL() + "/context"
           );
+          
+          var that = this;
+          taskContextModel.attachRequestCompleted(function() {
+            // Transform capitalized property names to lowercase
+            var data = taskContextModel.getData();
+            var transformedData = that._transformToLowercase(data);
+            taskContextModel.setData(transformedData);
+          });
+          
           this.setModel(taskContextModel, "context");
+        },
+
+        _transformToLowercase: function(data) {
+          if (!data) return {};
+          
+          var transformed = {};
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              // Convert first letter to lowercase
+              var lowercaseKey = key.charAt(0).toLowerCase() + key.slice(1);
+              transformed[lowercaseKey] = data[key];
+            }
+          }
+          return transformed;
+        },
+
+        _transformToCapitalized: function(data) {
+          if (!data) return {};
+          
+          var transformed = {};
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              // Convert first letter to uppercase
+              var capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+              transformed[capitalizedKey] = data[key];
+            }
+          }
+          return transformed;
         },
 
         _getTaskInstancesBaseURL: function () {
@@ -136,7 +161,6 @@ sap.ui.define(
         },
 
         _getWorkflowRuntimeBaseURL: function () {
-          // Use the correct API path that goes through xs-app.json routing
           return "/api/public/workflow/rest/v1";
         },
 
@@ -150,16 +174,12 @@ sap.ui.define(
         },
 
         completeTask: function (approvalStatus) {
-          // Get all context data
           var contextData = this.getModel("context").getData();
           
-          // Set the approved status
           contextData.approved = approvalStatus;
           
-          // Update the model with the approval status
           this.getModel("context").setData(contextData);
           
-          // Complete the task with all form data
           this._patchTaskInstance();
           this._refreshTaskList();
         },
@@ -167,9 +187,12 @@ sap.ui.define(
         _patchTaskInstance: function () {
           var contextData = this.getModel("context").getData();
           
+          // Transform back to capitalized for workflow
+          var transformedData = this._transformToCapitalized(contextData);
+          
           var data = {
             status: "COMPLETED",
-            context: contextData
+            context: transformedData
           };
 
           jQuery.ajax({
