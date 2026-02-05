@@ -1,0 +1,635 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "customer.workflowuimodule",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.1.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.4",
+            "toolsId": "96d37c16-c0e1-4c4e-87e9-7287e786d5a2"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent-intent": {
+                    "semanticObject": "intent",
+                    "action": "intent",
+                    "title": "{{intent-intent.flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.82.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "customer.workflowuimodule.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "rootView": {
+            "viewName": "customer.workflowuimodule.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "customer"
+    },
+    "sap.bpa.task": {
+        "_version": "1.0.0",
+        "category": "approval",
+        "outcomes": [
+            {
+                "id": "approve",
+                "label": "Approve"
+            },
+            {
+                "id": "reject",
+                "label": "Reject"
+            }
+        ],
+        "inputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "NoteForApprovalInput",
+            "type": "object",
+            "properties": {
+                "businesspartner": {
+                    "type": "string",
+                    "title": "Business Partner",
+                    "description": "Business Partner"
+                },
+                "businesspartnercategory": {
+                    "type": "string",
+                    "title": "Business Partner Category",
+                    "description": "Business Partner Category"
+                },
+                "searchterm1": {
+                    "type": "string",
+                    "title": "Search Term 1",
+                    "description": "Search Term 1"
+                },
+                "organizationbpname1": {
+                    "type": "string",
+                    "title": "Organization BP Name 1",
+                    "description": "Organization BP Name 1"
+                },
+                "organizationbpname2": {
+                    "type": "string",
+                    "title": "Organization BP Name 2",
+                    "description": "Organization BP Name 2"
+                },
+                "to_businesspartnerrole": {
+                    "type": "string",
+                    "title": "To Business Partner Role",
+                    "description": "To Business Partner Role"
+                },
+                "country": {
+                    "type": "string",
+                    "title": "Country",
+                    "description": "Country"
+                },
+                "cityname": {
+                    "type": "string",
+                    "title": "City Name",
+                    "description": "City Name"
+                },
+                "postalcode": {
+                    "type": "string",
+                    "title": "Postal Code",
+                    "description": "Postal Code"
+                },
+                "streetname": {
+                    "type": "string",
+                    "title": "Street Name",
+                    "description": "Street Name"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "title": "Created By",
+                    "description": "Created By"
+                },
+                "district": {
+                    "type": "string",
+                    "title": "District",
+                    "description": "District"
+                },
+                "housenumber": {
+                    "type": "string",
+                    "title": "House Number",
+                    "description": "House Number"
+                },
+                "language": {
+                    "type": "string",
+                    "title": "Language",
+                    "description": "Language"
+                },
+                "region": {
+                    "type": "string",
+                    "title": "Region",
+                    "description": "Region"
+                },
+                "emailaddress": {
+                    "type": "string",
+                    "title": "Email Address",
+                    "description": "Email Address"
+                },
+                "phonenumber": {
+                    "type": "string",
+                    "title": "Phone Number",
+                    "description": "Phone Number"
+                },
+                "bptaxtype": {
+                    "type": "string",
+                    "title": "BP Tax Type",
+                    "description": "BP Tax Type"
+                },
+                "bptaxnumber": {
+                    "type": "string",
+                    "title": "BP Tax Number",
+                    "description": "BP Tax Number"
+                },
+                "banknumber": {
+                    "type": "string",
+                    "title": "Bank Number",
+                    "description": "Bank Number"
+                },
+                "bankaccount": {
+                    "type": "string",
+                    "title": "Bank Account",
+                    "description": "Bank Account"
+                },
+                "bankcountrykey": {
+                    "type": "string",
+                    "title": "Bank Country Key",
+                    "description": "Bank Country Key"
+                },
+                "companycode": {
+                    "type": "string",
+                    "title": "Company Code",
+                    "description": "Company Code"
+                },
+                "customeraccountgroup": {
+                    "type": "string",
+                    "title": "Customer Account Group",
+                    "description": "Customer Account Group"
+                },
+                "reconciliationaccount": {
+                    "type": "string",
+                    "title": "Reconciliation Account",
+                    "description": "Reconciliation Account"
+                },
+                "paymentterms": {
+                    "type": "string",
+                    "title": "Payment Terms",
+                    "description": "Payment Terms"
+                },
+                "salesorganization": {
+                    "type": "string",
+                    "title": "Sales Organization",
+                    "description": "Sales Organization"
+                },
+                "distributionchannel": {
+                    "type": "string",
+                    "title": "Distribution Channel",
+                    "description": "Distribution Channel"
+                },
+                "division": {
+                    "type": "string",
+                    "title": "Division",
+                    "description": "Division"
+                },
+                "customerpricingprocedure": {
+                    "type": "string",
+                    "title": "Customer Pricing Procedure",
+                    "description": "Customer Pricing Procedure"
+                },
+                "salesgroup": {
+                    "type": "string",
+                    "title": "Sales Group",
+                    "description": "Sales Group"
+                },
+                "salesoffice": {
+                    "type": "string",
+                    "title": "Sales Office",
+                    "description": "Sales Office"
+                },
+                "customerpricegroup": {
+                    "type": "string",
+                    "title": "Customer Price Group",
+                    "description": "Customer Price Group"
+                },
+                "customergroup": {
+                    "type": "string",
+                    "title": "Customer Group",
+                    "description": "Customer Group"
+                },
+                "itemorderprobabilityinpercent": {
+                    "type": "string",
+                    "title": "Item Order Probability In Percent",
+                    "description": "Item Order Probability In Percent"
+                },
+                "customeraccountassignmentgroup": {
+                    "type": "string",
+                    "title": "Customer Account Assignment Group",
+                    "description": "Customer Account Assignment Group"
+                },
+                "pricelisttype": {
+                    "type": "string",
+                    "title": "Price List Type",
+                    "description": "Price List Type"
+                },
+                "shippingcondition": {
+                    "type": "string",
+                    "title": "Shipping Condition",
+                    "description": "Shipping Condition"
+                },
+                "incotermsclassification": {
+                    "type": "string",
+                    "title": "Incoterms Classification",
+                    "description": "Incoterms Classification"
+                },
+                "incotermstransferlocation": {
+                    "type": "string",
+                    "title": "Incoterms Transfer Location",
+                    "description": "Incoterms Transfer Location"
+                },
+                "customerpaymentterms": {
+                    "type": "string",
+                    "title": "Customer Payment Terms",
+                    "description": "Customer Payment Terms"
+                },
+                "salesdistrict": {
+                    "type": "string",
+                    "title": "Sales District",
+                    "description": "Sales District"
+                },
+                "ordercombinationisallowed": {
+                    "type": "boolean",
+                    "title": "Order Combination Is Allowed",
+                    "description": "Order Combination Is Allowed"
+                },
+                "currency": {
+                    "type": "string",
+                    "title": "Currency",
+                    "description": "Currency"
+                },
+                "rejectReason": {
+                    "type": "string",
+                    "title": "Reject Resaon",
+                    "description": "Reject Resaon"
+                },
+                "partnerfunction": {
+                    "type": "string",
+                    "title": "Partner Function",
+                    "description": "Partner Function"
+                },
+                "bpcustomernumber": {
+                    "type": "string",
+                    "title": "BP Customer Number",
+                    "description": "BP Customer Number"
+                },
+                "departurecountry": {
+                    "type": "string",
+                    "title": "Departure Country",
+                    "description": "Departure Country"
+                },
+                "customertaxcategory": {
+                    "type": "string",
+                    "title": "Customer Tax Category",
+                    "description": "Customer Tax Category"
+                },
+                "customertaxclassification": {
+                    "type": "string",
+                    "title": "Customer Tax Classification",
+                    "description": "Customer Tax Classification"
+                }
+            }
+        },
+        "outputs": {
+            "type": "object",
+            "properties": {
+                "businesspartner": {
+                    "type": "string",
+                    "title": "Business Partner",
+                    "description": "Business Partner"
+                },
+                "businesspartnercategory": {
+                    "type": "string",
+                    "title": "Business Partner Category",
+                    "description": "Business Partner Category"
+                },
+                "searchterm1": {
+                    "type": "string",
+                    "title": "Search Term 1",
+                    "description": "Search Term 1"
+                },
+                "organizationbpname1": {
+                    "type": "string",
+                    "title": "Organization BP Name 1",
+                    "description": "Organization BP Name 1"
+                },
+                "organizationbpname2": {
+                    "type": "string",
+                    "title": "Organization BP Name 2",
+                    "description": "Organization BP Name 2"
+                },
+                "to_businesspartnerrole": {
+                    "type": "string",
+                    "title": "To Business Partner Role",
+                    "description": "To Business Partner Role"
+                },
+                "country": {
+                    "type": "string",
+                    "title": "Country",
+                    "description": "Country"
+                },
+                "cityname": {
+                    "type": "string",
+                    "title": "City Name",
+                    "description": "City Name"
+                },
+                "postalcode": {
+                    "type": "string",
+                    "title": "Postal Code",
+                    "description": "Postal Code"
+                },
+                "streetname": {
+                    "type": "string",
+                    "title": "Street Name",
+                    "description": "Street Name"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "title": "Created By",
+                    "description": "Created By"
+                },
+                "district": {
+                    "type": "string",
+                    "title": "District",
+                    "description": "District"
+                },
+                "housenumber": {
+                    "type": "string",
+                    "title": "House Number",
+                    "description": "House Number"
+                },
+                "language": {
+                    "type": "string",
+                    "title": "Language",
+                    "description": "Language"
+                },
+                "region": {
+                    "type": "string",
+                    "title": "Region",
+                    "description": "Region"
+                },
+                "emailaddress": {
+                    "type": "string",
+                    "title": "Email Address",
+                    "description": "Email Address"
+                },
+                "phonenumber": {
+                    "type": "string",
+                    "title": "Phone Number",
+                    "description": "Phone Number"
+                },
+                "bptaxtype": {
+                    "type": "string",
+                    "title": "BP Tax Type",
+                    "description": "BP Tax Type"
+                },
+                "bptaxnumber": {
+                    "type": "string",
+                    "title": "BP Tax Number",
+                    "description": "BP Tax Number"
+                },
+                "banknumber": {
+                    "type": "string",
+                    "title": "Bank Number",
+                    "description": "Bank Number"
+                },
+                "bankaccount": {
+                    "type": "string",
+                    "title": "Bank Account",
+                    "description": "Bank Account"
+                },
+                "bankcountrykey": {
+                    "type": "string",
+                    "title": "Bank Country Key",
+                    "description": "Bank Country Key"
+                },
+                "companycode": {
+                    "type": "string",
+                    "title": "Company Code",
+                    "description": "Company Code"
+                },
+                "customeraccountgroup": {
+                    "type": "string",
+                    "title": "Customer Account Group",
+                    "description": "Customer Account Group"
+                },
+                "reconciliationaccount": {
+                    "type": "string",
+                    "title": "Reconciliation Account",
+                    "description": "Reconciliation Account"
+                },
+                "paymentterms": {
+                    "type": "string",
+                    "title": "Payment Terms",
+                    "description": "Payment Terms"
+                },
+                "salesorganization": {
+                    "type": "string",
+                    "title": "Sales Organization",
+                    "description": "Sales Organization"
+                },
+                "distributionchannel": {
+                    "type": "string",
+                    "title": "Distribution Channel",
+                    "description": "Distribution Channel"
+                },
+                "division": {
+                    "type": "string",
+                    "title": "Division",
+                    "description": "Division"
+                },
+                "customerpricingprocedure": {
+                    "type": "string",
+                    "title": "Customer Pricing Procedure",
+                    "description": "Customer Pricing Procedure"
+                },
+                "salesgroup": {
+                    "type": "string",
+                    "title": "Sales Group",
+                    "description": "Sales Group"
+                },
+                "salesoffice": {
+                    "type": "string",
+                    "title": "Sales Office",
+                    "description": "Sales Office"
+                },
+                "customerpricegroup": {
+                    "type": "string",
+                    "title": "Customer Price Group",
+                    "description": "Customer Price Group"
+                },
+                "customergroup": {
+                    "type": "string",
+                    "title": "Customer Group",
+                    "description": "Customer Group"
+                },
+                "itemorderprobabilityinpercent": {
+                    "type": "string",
+                    "title": "Item Order Probability In Percent",
+                    "description": "Item Order Probability In Percent"
+                },
+                "customeraccountassignmentgroup": {
+                    "type": "string",
+                    "title": "Customer Account Assignment Group",
+                    "description": "Customer Account Assignment Group"
+                },
+                "pricelisttype": {
+                    "type": "string",
+                    "title": "Price List Type",
+                    "description": "Price List Type"
+                },
+                "shippingcondition": {
+                    "type": "string",
+                    "title": "Shipping Condition",
+                    "description": "Shipping Condition"
+                },
+                "incotermsclassification": {
+                    "type": "string",
+                    "title": "Incoterms Classification",
+                    "description": "Incoterms Classification"
+                },
+                "incotermstransferlocation": {
+                    "type": "string",
+                    "title": "Incoterms Transfer Location",
+                    "description": "Incoterms Transfer Location"
+                },
+                "customerpaymentterms": {
+                    "type": "string",
+                    "title": "Customer Payment Terms",
+                    "description": "Customer Payment Terms"
+                },
+                "salesdistrict": {
+                    "type": "string",
+                    "title": "Sales District",
+                    "description": "Sales District"
+                },
+                "ordercombinationisallowed": {
+                    "type": "boolean",
+                    "title": "Order Combination Is Allowed",
+                    "description": "Order Combination Is Allowed"
+                },
+                "currency": {
+                    "type": "string",
+                    "title": "Currency",
+                    "description": "Currency"
+                },
+                "rejectReason": {
+                    "type": "string",
+                    "title": "Reject Resaon",
+                    "description": "Reject Resaon"
+                },
+                "partnerfunction": {
+                    "type": "string",
+                    "title": "Partner Function",
+                    "description": "Partner Function"
+                },
+                "bpcustomernumber": {
+                    "type": "string",
+                    "title": "BP Customer Number",
+                    "description": "BP Customer Number"
+                },
+                "departurecountry": {
+                    "type": "string",
+                    "title": "Departure Country",
+                    "description": "Departure Country"
+                },
+                "customertaxcategory": {
+                    "type": "string",
+                    "title": "Customer Tax Category",
+                    "description": "Customer Tax Category"
+                },
+                "customertaxclassification": {
+                    "type": "string",
+                    "title": "Customer Tax Classification",
+                    "description": "Customer Tax Classification"
+                }
+            }
+        }
+    }
+}

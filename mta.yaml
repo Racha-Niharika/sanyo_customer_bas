@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: customer
+version: 0.0.1
+modules:
+- name: customer-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: customer-destination-service
+    parameters:
+      content-target: true
+  - name: customer_html_repo_host
+    parameters:
+      service-key:
+        name: customer_html_repo_host-key
+  - name: uaa_customer
+    parameters:
+      service-key:
+        name: uaa_customer-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: customer_customer_html_repo_host
+          ServiceInstanceName: customer-html5-app-host-service
+          ServiceKeyName: customer_html_repo_host-key
+          sap.cloud.service: customer
+        - Authentication: OAuth2UserTokenExchange
+          Name: customer_uaa_customer
+          ServiceInstanceName: customer-xsuaa-service
+          ServiceKeyName: uaa_customer-key
+          sap.cloud.service: customer
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: customer-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: customer_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - customerworkflowuimodule.zip
+      name: customerworkflowuimodule
+      target-path: resources/
+- name: customerworkflowuimodule
+  type: html5
+  path: workflow-ui-module
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: customer-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: customer-destination-service
+    service-plan: lite
+- name: customer_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: customer-html5-app-host-service
+    service-plan: app-host
+- name: uaa_customer
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: customer-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

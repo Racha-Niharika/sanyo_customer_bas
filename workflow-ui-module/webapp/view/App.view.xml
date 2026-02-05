@@ -1,0 +1,154 @@
+
+<mvc:View controllerName="customer.workflowuimodule.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    displayBlock="true">
+    <App id="app">
+        <Page id="scroll" showHeader="false" showFooter="false">
+            <content>
+                <ScrollContainer
+                    height="100%"
+                    width="100%"
+                    vertical="true"
+                    horizontal="false">
+
+                    <form:SimpleForm
+                        id="nfaForm"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        adjustLabelSpan="false"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1">
+
+                        <form:content>
+
+                            <HBox justifyContent="Center" width="100%">
+                                <Title text="BP Details Entry" level="H6" />
+                            </HBox>
+
+                            <Label text="BusinessPartner" />
+                            <Input value="{context>/businesspartner}" />
+                            <Label text="BusinessPartnerCategory" />
+                            <Input value="{context>/businesspartnercategory}" />
+                            <Label text="SearchTerm1" />
+                            <Input value="{context>/searchterm1}" />
+                            <Label text="OrganizationBPName1" />
+                            <Input value="{context>/organizationbpname1}" />
+                            <Label text="OrganizationBPName2" />
+                            <Input value="{context>/organizationbpname2}" />
+                            <Label text="to_BusinessPartnerRole" />
+                            <Input value="{context>/to_businesspartnerrole}" />
+                            <Label text="Country" />
+                            <Input value="{context>/country}" />
+                            <Label text="CityName" />
+                            <Input value="{context>/cityname}" />
+                            <Label text="PostalCode" />
+                            <Input value="{context>/postalcode}" />
+                            <Label text="StreetName" />
+                            <Input value="{context>/streetname}" />
+                            <Label text="District" />
+                            <Input value="{context>/district}" />
+                            <Label text="HouseNumber" />
+                            <Input value="{context>/housenumber}" />
+                            <Label text="Language" />
+                            <Input value="{context>/language}" />
+                            <Label text="Region" />
+                            <Input value="{context>/region}" />
+                            <Label text="EmailAddress" />
+                            <Input value="{context>/emailaddress}" />
+                            <Label text="PhoneNumber" />
+                            <Input value="{context>/phonenumber}" />
+                            <Label text="BPTaxType" />
+                            <Input value="{context>/bptaxtype}" />
+                            <Label text="BPTaxNumber" />
+                            <Input value="{context>/bptaxnumber}" />
+                            <Label text="BankNumber" />
+                            <Input value="{context>/banknumber}" />
+                            <Label text="BankAccount" />
+                            <Input value="{context>/bankaccount}" />
+                            <Label text="BankCountryKey" />
+                            <Input value="{context>/bankcountrykey}" />
+                            <Label text="CustomerAccountGroup" />
+                            <Input value="{context>/customeraccountgroup}" />
+                            <Label text="CompanyCode" />
+                            <Input value="{context>/companycode}" />
+                            <Label text="ReconciliationAccount" />
+                            <Input value="{context>/reconciliationaccount}" />
+                            <Label text="PaymentTerms" />
+                            <Input value="{context>/paymentterms}" />
+                            <Label text="SalesOrganization" />
+                            <Input value="{context>/salesorganization}" />
+                            <Label text="DistributionChannel" />
+                            <Input value="{context>/distributionchannel}" />
+                            <Label text="Division" />
+                            <Input value="{context>/division}" />
+                            <Label text="CustomerPricingProcedure" />
+                            <Input value="{context>/customerpricingprocedure}" />
+                            <Label text="SalesGroup" />
+                            <Input value="{context>/salesgroup}" />
+                            <Label text="SalesOffice" />
+                            <Input value="{context>/salesoffice}" />
+                            <Label text="CustomerPriceGroup" />
+                            <Input value="{context>/customerpricegroup}" />
+                            <Label text="CustomerGroup" />
+                            <Input value="{context>/customergroup}" />
+                            <Label text="ItemOrderProbabilityInPercent" />
+                            <Input value="{context>/itemorderprobabilityinpercent}" />
+                            <Label text="CustomerAccountAssignmentGroup" />
+                            <Input value="{context>/customeraccountassignmentgroup}" />
+                            <Label text="PriceListType" />
+                            <Input value="{context>/pricelisttype}" />
+                            <Label text="ShippingCondition" />
+                            <Input value="{context>/shippingcondition}" />
+                            <Label text="IncotermsClassification" />
+                            <Input value="{context>/incotermsclassification}" />
+                            <Label text="IncotermsTransferLocation" />
+                            <Input value="{context>/incotermstransferlocation}" />
+                            <Label text="CustomerPaymentTerms" />
+                            <Input value="{context>/customerpaymentterms}" />
+                            <Label text="SalesDistrict" />
+                            <Input value="{context>/salesdistrict}" />
+                            
+                            <Label text="OrderCombinationIsAllowed" />
+                            <CheckBox selected="{context>/ordercombinationisallowed}" />
+                            
+                            <Label text="Currency" />
+                            <Input value="{context>/currency}" />
+                            <Label text="PartnerFunction" />
+                            <Input value="{context>/partnerfunction}" />
+                            <Label text="BPCustomerNumber" />
+                            <Input value="{context>/bpcustomernumber}" />
+                            <Label text="DepartureCountry" />
+                            <Input value="{context>/departurecountry}" />
+                            <Label text="CustomerTaxCategory" />
+                            <Input value="{context>/customertaxcategory}" />
+                            <Label text="CustomerTaxClassification" />
+                            <Input value="{context>/customertaxclassification}" />
+                            <Label text="CreatedBy" />
+                            <Input value="{context>/createdBy}" />
+                            <Label text="RejectReason" />
+                            <Input value="{context>/rejectReason}" />
+
+                            <Button 
+                                text="Submit"
+                                enabled="{context>/isButtonEnabled}" 
+                                press=".onSubmitForm"/>
+                        </form:content>
+                    </form:SimpleForm>
+                </ScrollContainer>
+            </content>
+        </Page>
+    </App>
+</mvc:View>
